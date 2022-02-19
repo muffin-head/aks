@@ -1,22 +1,17 @@
-on: [push]
-name: databrideployment
+name: CI
+
+on:
+  - push
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CRED }}
-      - uses: Azure/CLI@v1
-        with:
-          inlineScript: |
-            #!/bin/bash 
-            az aks get-credentials --resource-group kuber25 --name muffin25
-            cat $HOME/.kube/config | base64
-            kubectl
-            
+      - uses: actions/checkout@v2
 
-          
-            
+      - name: Trigger deploy
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.AKS }}
+        with:
+          args: get pods
