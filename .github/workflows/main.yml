@@ -14,8 +14,9 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.AKS }}
         with:
-          args: create namespace abc1
+          cmd: get services
+          cmd1: get pods
+          
        
-                get namespace
-                
+
         
