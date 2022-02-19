@@ -11,10 +11,10 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: get namespaces
+          args: create -f complete-demo.yaml
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: get pods
+          args: get services
             
