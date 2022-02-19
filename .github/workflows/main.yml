@@ -7,11 +7,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Trigger deploy
-        uses: Consensys/kubernetes-action@master
+      - uses: actions-hub/kubectl@master
         env:
-          KUBE_CONFIG_DATA: ${{ secrets.AKS }}
+          KUBE_CONFIG: ${{ secrets.AKS }}
         with:
           args: get pods
