@@ -13,8 +13,9 @@ jobs:
         with:
           inlineScript: |
             #!/bin/bash 
-            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-            $kubectl get pods
+            az aks get-credentials --resource-group kuber25 --name muffin25
+            cat $HOME/.kube/config | base64
+            
 
           
             
