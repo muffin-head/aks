@@ -9,8 +9,12 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CRED }}
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.AKS }}
+      - uses: Azure/CLI@v1
         with:
-          args: get pods
+          inlineScript: |
+            #!/bin/bash 
+            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            kubectl get pods
+
+          
+            
