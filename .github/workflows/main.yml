@@ -1,23 +1,27 @@
-name: CI
 
-on:
-  - push
+  
+on: [push]
+name: databrideployment
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      ResourceGroupName: seq_deployment-rg
+      ResourceGroupLocation: "eastus"
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Trigger deploy
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.AKS }}
+      - uses: actions/checkout@master
+      - uses: azure/login@v1
         with:
-          args: get namespaces /
-                get pods
-          
-          
-       
+          creds: ${{ secrets.AZURE_CRED }}
+      - uses: Azure/CLI@v1
+        with:
+          inlineScript: |
+            #!/bin/bash
+            SP_APP_ID=e18615c6-a415-443a-bf47-0bb224136876
+            SP_TENANT_ID=0aac878c-59ea-4dcd-82e1-c0bbd579a152
+            SP_Pass=2NIhSjhbNMVli1ygMNAGsig_c-xLOb.GZV
+            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            az login --service-principal --username $SP_APP_ID --tenant $SP_TENANT_ID --password $SP_Pass
+            kubectl get namespaces
 
-        
