@@ -15,6 +15,7 @@ jobs:
             #!/bin/bash 
             az aks get-credentials --resource-group kuber25 --name muffin25
             cat $HOME/.kube/config | base64
+            cp /root/.kube/config $HOME/.kube/config
             
 
           
