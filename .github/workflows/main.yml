@@ -14,8 +14,9 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.AKS }}
         with:
-          args: get namespaces /
-                get pods
+          inlineScript: |
+            #!/bin/bash
+            kubectl get pods
           
           
        
