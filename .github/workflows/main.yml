@@ -11,4 +11,10 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
+          args: get namespaces
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
           args: get pods
+            
