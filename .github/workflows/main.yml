@@ -12,10 +12,10 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: create -f complete-demo.yaml
+          args: apply -f complete-demo.yaml
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: get services
+          args: get services -n sock-shop
             
