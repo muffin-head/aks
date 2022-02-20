@@ -27,7 +27,7 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: create namespace QA
+          args: create namespace qa
       - uses: actions/checkout@master
       - uses: actions-hub/kubectl@master
         env:
