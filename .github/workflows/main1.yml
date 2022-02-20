@@ -20,4 +20,4 @@ jobs:
 
       - run: |
           docker build . -t muffinhead.azurecr.io/appdb:${{ github.sha }}
-          docker push yourACRname.azurecr.io/appdb:${{ github.sha }}
+          docker push muffinhead.azurecr.io/appdb:${{ github.sha }}
