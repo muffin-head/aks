@@ -22,12 +22,7 @@ jobs:
           docker build . -t muffinhead.azurecr.io/test:ver
           docker push muffinhead.azurecr.io/test:ver
           
-      - uses: actions/checkout@master
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.AKS }}
-        with:
-          args: create namespace qa
+
       - uses: actions/checkout@master
       - uses: actions-hub/kubectl@master
         env:
