@@ -24,14 +24,38 @@ jobs:
           
 
       - uses: actions/checkout@master
-
+      
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: apply -f test.yaml
+          args: apply -f qa.yaml
+          
+          
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: apply -f qa.yaml
+          
+          
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: apply -f staging.yaml
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: get services -n dev
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
           args: get services -n qa
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: get services -n staging
