@@ -28,9 +28,14 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: apply -f test.yaml
+          args: create namespace qa
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: apply -f  test_ser.yaml
+          args: create -f test.yaml
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: create -f test_ser.yaml
