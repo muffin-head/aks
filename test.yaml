@@ -4,7 +4,7 @@ metadata:
   name: frontend
   labels:
     app: guestbook
-  namespace: QA
+  namespace: qa
 spec:
   selector:
     matchLabels:
