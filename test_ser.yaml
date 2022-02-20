@@ -5,7 +5,7 @@ metadata:
   labels:
     app: guestbook
     tier: frontend
-  namespace: QA
+  namespace: qa
 spec:
   # comment or delete the following line if you want to use a LoadBalancer
   #type: NodePort
