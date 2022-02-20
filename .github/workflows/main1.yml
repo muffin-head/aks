@@ -35,6 +35,10 @@ jobs:
         with:
           args: apply -f dev.yaml
           
+      - name: Sleep for 30 seconds
+        run: sleep 10s
+        shell: bash
+          
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
@@ -49,6 +53,11 @@ jobs:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
           args: apply -f qa.yaml
+          
+      - name: Sleep for 10 seconds
+        run: sleep 30s
+        shell: bash          
+          
 
       - uses: actions-hub/kubectl@master
         env:
@@ -64,6 +73,10 @@ jobs:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
           args: apply -f staging.yaml
+          
+      - name: Sleep for 10 seconds
+        run: sleep 30s
+        shell: bash          
 
       - uses: actions-hub/kubectl@master
         env:
