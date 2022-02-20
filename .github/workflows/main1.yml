@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      
+      - uses: actions/checkout@v2
       - uses: azure/docker-login@v1
         with:
           login-server: muffinhead.azurecr.io
@@ -24,12 +24,16 @@ jobs:
           
 
       - uses: actions/checkout@master
-
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
         with:
-          args: apply -f test.yaml
+          args: create namespace qa
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: create -f test.yaml
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.AKS }}
