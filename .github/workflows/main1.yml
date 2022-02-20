@@ -19,5 +19,5 @@ jobs:
           password: jIo6qLfWcZhLcLXJC0KQRLK=42x27L1V
 
       - run: |
-          docker build . -t muffinhead.azurecr.io/appdb:${{ github.sha }}
-          docker push muffinhead.azurecr.io/appdb:${{ github.sha }}
+          docker build . -t muffinhead.azurecr.io/test:ver
+          docker push muffinhead.azurecr.io/test:ver
