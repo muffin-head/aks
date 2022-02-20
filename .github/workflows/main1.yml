@@ -21,3 +21,15 @@ jobs:
       - run: |
           docker build . -t muffinhead.azurecr.io/test:ver
           docker push muffinhead.azurecr.io/test:ver
+          
+      - uses: actions/checkout@master
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: apply -f test.yaml
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.AKS }}
+        with:
+          args: apply -f  test_ser.yaml
